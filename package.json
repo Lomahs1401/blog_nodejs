@@ -2,10 +2,13 @@
   "name": "blog_nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss/app.scss src/public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "beautiful": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -22,10 +25,29 @@
     "url": "https://github.com/Lomahs1401/blog_nodejs/issues"
   },
   "homepage": "https://github.com/Lomahs1401/blog_nodejs#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "install": "^0.13.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.1.2",
+    "mongoose-delete": "^1.0.2",
+    "mongoose-slug-updater": "^3.3.0",
+    "node-sass": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.3",
+    "prettier": "^3.2.5"
   }
 }
